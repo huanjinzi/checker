@@ -1,12 +1,44 @@
-package checker;
+/*
+ *  Copyright (C) 2019 Yuan Huan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hz.checker;
 
-import checker.exp.BooleanCheckException;
-import checker.exp.IntegerCheckException;
-import checker.exp.ObjectCheckException;
-import checker.exp.StringCheckException;
+import com.hz.checker.exp.BooleanCheckException;
+import com.hz.checker.exp.IntegerCheckException;
+import com.hz.checker.exp.ObjectCheckException;
+import com.hz.checker.exp.StringCheckException;
 
 import java.util.Locale;
-
+/**
+ * Usage:
+ *
+ * <code>
+ *     // without message.
+ *     Checker.check(int);
+ *     Checker.check(boolean);
+ *     Checker.check(Object);
+ *
+ *     // with message.
+ *     Checker.check(int,String);
+ *     Checker.check(boolean,String);
+ *     Checker.check(Object,String);
+ *
+ * </code>
+ *
+ * Checker is default in debug mode,it means <code>Checker.dcheck()</>
+ * will work. */
 public class Checker {
 
     enum ExceptionType {

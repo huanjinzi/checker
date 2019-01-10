@@ -17,7 +17,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-def version_str = '1.0.0'
+def version_str = '1.0.1'
 def url = 'https://github.com/huanjinzi/checker'
 def gitUrl = 'https://github.com/huanjinzi/checker'
 
