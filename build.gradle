@@ -18,8 +18,8 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 def version_str = '1.0.1'
-def url = 'https://github.com/huanjinzi/checker'
-def gitUrl = 'https://github.com/huanjinzi/checker'
+def webUrl = 'https://github.com/huanjinzi/checker'
+def gitUrl = 'https://github.com/huanjinzi/checker.git'
 
 group = 'com.hz'
 version = version_str
@@ -59,7 +59,7 @@ def pomConfig = {
     }
 
     scm {
-        url url
+        url webUrl
     }
 }
 
@@ -75,9 +75,9 @@ publishing {
             version version_str
             pom.withXml {
                 def root = asNode()
-                root.appendNode('description', 'null checker.')
+                root.appendNode('description', 'simple code checker')
                 root.appendNode('name', 'checker')
-                root.appendNode('url', url)
+                root.appendNode('url', webUrl)
                 root.children().last() + pomConfig
             }
         }

@@ -6,7 +6,7 @@ simple code checker.
 ## Usage
 Gradle
 ```
-compile 'com.hz:checker:1.0.0'
+compile 'com.hz:checker:1.0.1'
 ```
 
 Maven
@@ -14,14 +14,14 @@ Maven
 <dependency>
     <groupId>com.hz</groupId>
     <artifactId>checker</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <type>pom</type>
 </dependency>
 ```
 
 Ivy
 ```
-<dependency org='com.hz' name='checker' rev='1.0.0'>
+<dependency org='com.hz' name='checker' rev='1.0.1'>
     <artifact name='checker' ext='pom' />
 </dependency>
 ```
