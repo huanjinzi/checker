@@ -1,0 +1,105 @@
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+def version_str = '1.0.0'
+def url = 'https://github.com/huanjinzi/checker'
+def gitUrl = 'https://github.com/huanjinzi/checker'
+
+group = 'com.hz'
+version = version_str
+
+bintray {
+    user = property 'bintray.user'
+    key = property 'bintray.key'
+    publications = ['CheckerPublication']
+
+    pkg {
+        repo = 'maven'
+        name = 'checker'
+        licenses = ['Apache-2.0']
+        vcsUrl = gitUrl
+
+        version {
+            name = version_str
+            released  = new Date()
+        }
+    }
+}
+
+// Create the pom configuration:
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+    }
+    developers {
+        developer {
+            id "huanjinzi"
+            name "huanjinzi"
+            email "huanjinzi@gmail.com"
+        }
+    }
+
+    scm {
+        url url
+    }
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        CheckerPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'com.hz'
+            artifactId 'checker'
+            version version_str
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'null checker.')
+                root.appendNode('name', 'checker')
+                root.appendNode('url', url)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+
+task my_javadoc(type: Javadoc) {
+    source = sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: my_javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
